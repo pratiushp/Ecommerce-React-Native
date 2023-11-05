@@ -67,8 +67,9 @@ const AdminPanel = ({ navigation }) => {
               {products.map((item, index) => (
                 <ProductListItem
                   key={item._id}
+                  id={item._id}
                   i={index}
-                  pricce={item.price}
+                  price={item.price}
                   stock={item.stock}
                   name={item.name}
                   category={item.category}
