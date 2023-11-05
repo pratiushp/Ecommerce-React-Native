@@ -12,7 +12,25 @@ import Chart from "../../Components/Chart";
 const AdminPanel = ({ navigation }) => {
   const loading = false;
 
-  const navigationHandler = () => {};
+  const navigationHandler = (text) => {
+    switch (text) {
+      case "Category":
+        navigation.navigate("categories");
+        break;
+
+      case "All Orders":
+        navigation.navigate("adminorders");
+        break;
+
+      case "Product":
+        navigation.navigate("newproduct");
+        break;
+
+      default:
+        navigation.navigate("adminorders");
+        break;
+    }
+  };
 
   const deleteProductHandler = (id) => {
     console.log(`Delete Product with ID ${id}`);
