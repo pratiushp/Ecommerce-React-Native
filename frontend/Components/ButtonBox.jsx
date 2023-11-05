@@ -12,6 +12,7 @@ const ButtonBox = ({
 }) => {
   return (
     <TouchableOpacity
+      activeOpacity={1}
       style={{
         height: 80,
         width: 80,

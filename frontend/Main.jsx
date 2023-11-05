@@ -12,6 +12,9 @@ import Payment from "./Screens/Payment";
 import ForgetPassword from "./Screens/ForgetPassword";
 import Veridy from "./Screens/Veridy";
 import Profile from "./Screens/Profile";
+import UpdateProfile from "./Screens/UpdateProfile";
+import ChangePassword from "./Screens/ChangePassword";
+import Orders from "./Screens/Orders";
 
 const Main = () => {
   const Stack = createNativeStackNavigator();
@@ -32,6 +35,9 @@ const Main = () => {
           <Stack.Screen name="forgetpassword" component={ForgetPassword} />
           <Stack.Screen name="verify" component={Veridy} />
           <Stack.Screen name="profile" component={Profile} />
+          <Stack.Screen name="updateprofile" component={UpdateProfile} />
+          <Stack.Screen name="changepassword" component={ChangePassword} />
+          <Stack.Screen name="orders" component={Orders} />
         </Stack.Group>
       </Stack.Navigator>
       <Toast position="top" />
