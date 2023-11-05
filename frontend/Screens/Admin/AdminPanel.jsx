@@ -7,6 +7,7 @@ import ButtonBox from "../../Components/ButtonBox";
 import ProductListHeading from "../../Components/ProductListHeading";
 import { products } from "../Home";
 import ProductListItem from "../../Components/ProductListItem";
+import Chart from "../../Components/Chart";
 
 const AdminPanel = ({ navigation }) => {
   const loading = false;
@@ -33,7 +34,9 @@ const AdminPanel = ({ navigation }) => {
               backgroundColor: colors.color3,
               borderRadius: 20,
               alignItems: "center",
-            }}></View>
+            }}>
+            <Chart inStock={12} outOfStock={2} />
+          </View>
 
           <View
             style={{
