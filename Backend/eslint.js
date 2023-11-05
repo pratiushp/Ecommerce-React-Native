@@ -1,0 +1,47 @@
+//.eslint.ts
+module.exports = {
+  env: {
+    commonjs: true,
+    es2021: true,
+    node: true,
+  },
+  plugins: ["prettier"],
+  extends: ["eslint:recommended", "plugin:prettier/recommended"],
+  overrides: [],
+  parserOptions: {
+    ecmaVersion: 12,
+  },
+  rules: {
+    "no-unused-vars": "warn",
+    // "no-console": "warn",
+    semi: "none",
+    "no-undef": "error",
+    "no-extra-semi": "warn",
+    "@typescript-eslint/no-explicit-any ": "off",
+    "no-multiple-empty-lines": ["warn", { max: 1 }],
+    "no-trailing-spaces": "warn",
+    "max-len": "off",
+    "no-var": "error",
+    eqeqeq: "error",
+    "prefer-const": "warn",
+    "prefer-template": 2,
+    "prefer-arrow-callback": 1,
+    "prefer-rest-params": 2,
+    "prefer-spread": 2,
+    "object-shorthand": 1,
+    "no-duplicate-imports": 2,
+    "no-confusing-arrow": 2,
+    "no-await-in-loop": "error",
+    // "no-use-before-define": "error",
+    "prettier/prettier": [
+      "warn",
+      {
+        // singleQuote: true,
+        tabWidth: 2,
+        semi: true,
+        printWidth: 108,
+        parser: "flow",
+      },
+    ],
+  },
+};
