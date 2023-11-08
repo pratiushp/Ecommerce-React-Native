@@ -16,6 +16,7 @@ import UpdateProfile from "./Screens/UpdateProfile";
 import ChangePassword from "./Screens/ChangePassword";
 import Orders from "./Screens/Orders";
 import AdminPanel from "./Screens/Admin/AdminPanel";
+import Categories from "./Screens/Admin/Categories";
 
 const Main = () => {
   const Stack = createNativeStackNavigator();
@@ -43,6 +44,7 @@ const Main = () => {
           {/* Admin Route */}
 
           <Stack.Screen name="adminpanel" component={AdminPanel} />
+          <Stack.Screen name="categories" component={Categories} />
         </Stack.Group>
       </Stack.Navigator>
       <Toast position="top" />
