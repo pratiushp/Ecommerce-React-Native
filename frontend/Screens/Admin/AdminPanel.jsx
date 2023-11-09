@@ -87,6 +87,7 @@ const AdminPanel = ({ navigation }) => {
             <View>
               {products.map((item, index) => (
                 <ProductListItem
+                  navigate={navigation}
                   key={item._id}
                   id={item._id}
                   i={index}
@@ -95,7 +96,6 @@ const AdminPanel = ({ navigation }) => {
                   name={item.name}
                   category={item.category}
                   imgSrc={item.images[0].url}
-                  navigate={navigation}
                   deleteHandler={deleteProductHandler}
                 />
               ))}

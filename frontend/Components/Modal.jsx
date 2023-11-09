@@ -3,7 +3,7 @@ import React from "react";
 import { colors } from "../Styles/style";
 import { Avatar, Button } from "react-native-paper";
 
-const Modal = ({ id, deleteHandler, setOpenModal, navigate }) => {
+const Modal = ({ id, deleteHandler, navigate, setOpenModal }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -17,7 +17,7 @@ const Modal = ({ id, deleteHandler, setOpenModal, navigate }) => {
       </TouchableOpacity>
 
       <Text
-        style={{ ...styles.text }}
+        style={styles.text}
         onPress={() => navigate.navigate("updateproduct", { id })}>
         Edit
       </Text>
