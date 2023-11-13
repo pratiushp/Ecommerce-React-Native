@@ -29,23 +29,25 @@ const CameraComponent = ({ navigation, route }) => {
   const clickPicture = async () => {
     const data = await camera.takePictureAsync();
 
+    console.log(data);
+
     if (route.params?.newProduct)
       return navigation.navigate("newproduct", {
-        image: data.assets[0].uri,
+        image: data.uri,
       });
 
     if (route.params?.updateProduct)
       return navigation.navigate("productimages", {
-        image: data.assets[0].uri,
+        image: data.uri,
       });
 
     if (route.params?.updateProfile)
       return navigation.navigate("profile", {
-        image: data.assets[0].uri,
+        image: data.uri,
       });
     else
       return navigation.navigate("register", {
-        image: data.assets[0].uri,
+        image: data.uri,
       });
   };
 
