@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Camera, CameraType } from "expo-camera";
 import { Avatar } from "react-native-paper";
-import { colors } from "../Styles/style";
+import { colors, defaultStyle } from "../Styles/style";
 import * as ImagePicker from "expo-image-picker";
 
 const CameraComponent = ({ navigation, route }) => {
@@ -24,6 +24,10 @@ const CameraComponent = ({ navigation, route }) => {
       aspect: [1, 1],
       quality: 1,
     });
+  };
+
+  const clickPicture = async () => {
+    const data = await camera.takePictureAsync();
 
     if (route.params?.newProduct)
       return navigation.navigate("newproduct", {
@@ -45,7 +49,21 @@ const CameraComponent = ({ navigation, route }) => {
       });
   };
 
-  const clickPicture = () => {};
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      setHasPermission(status === "granted");
+    })();
+  }, []);
+
+  if (hasPermission === null) return <View />;
+
+  if (hasPermission === false)
+    return (
+      <View style={defaultStyle}>
+        <Text>No Access To Camera </Text>
+      </View>
+    );
 
   return (
     <View style={{ flex: 1 }}>
