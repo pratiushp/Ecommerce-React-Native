@@ -51,3 +51,30 @@ export const createOrder = async (req, res) => {
     });
   }
 };
+
+export const getMyOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({ user: req.user?._id });
+
+    if (orders.length === 0) {
+      return res.status(400).json({ message: "No Order Found" });
+    }
+
+    return successMiddleware(
+      {
+        success: true,
+        messsage: "Order  Placed Successfully",
+        data: orders,
+      },
+      req,
+      res
+    );
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error,
+    });
+  }
+};
