@@ -63,7 +63,96 @@ export const getMyOrders = async (req, res) => {
     return successMiddleware(
       {
         success: true,
-        messsage: "Order  Placed Successfully",
+        messsage: "Order  Retrieve Successfully",
+        data: orders,
+      },
+      req,
+      res
+    );
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error,
+    });
+  }
+};
+
+export const getOrderDetails = async (req, res) => {
+  try {
+    const orderId = req.params.id;
+    const orderDetial = await Order.findById(orderId);
+
+    if (!orderDetial)
+      return res.status(400).json({ message: "No Order Found" });
+    return successMiddleware(
+      {
+        success: true,
+        messsage: "Order  get Successfully",
+        data: orderDetial,
+      },
+      req,
+      res
+    );
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error,
+    });
+  }
+};
+
+export const processOrder = async (req, res) => {
+  try {
+    const orderid = req.params.id;
+
+    const order = await Order.findById(orderid);
+
+    if (!order) return res.status(400).json({ message: "No Order Found" });
+
+    if (order.orderStatus === "Pending") order.orderStatus = "Processing";
+    else if (order.orderStatus === "Processing") order.orderStatus = "Shipped";
+    else if (order.orderStatus === "Shipped") {
+      order.orderStatus = "Delivered";
+      order.deliveredAt = new Date(Date.now());
+    } else return res.status(400).json({ message: " Order Delivered Already" });
+
+    await order.save();
+
+    return successMiddleware(
+      {
+        success: true,
+        messsage: "Order  Status Changed Successfully",
+        data: order,
+      },
+      req,
+      res
+    );
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error,
+    });
+  }
+};
+
+export const getAdminOrers = async (req, res) => {
+  try {
+    const orders = await Order.find();
+
+    if (orders.length === 0) {
+      return res.status(400).json({ message: "No Order Found" });
+    }
+
+    return successMiddleware(
+      {
+        success: true,
+        messsage: "Order  Retrieve Successfully",
         data: orders,
       },
       req,
