@@ -43,7 +43,7 @@ const orderSchema = new mongoose.Schema({
       },
       product: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "product",
+        ref: "Product",
         required: true,
       },
     },
@@ -53,7 +53,7 @@ const orderSchema = new mongoose.Schema({
 
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "users",
     required: true,
   },
 
@@ -75,7 +75,7 @@ const orderSchema = new mongoose.Schema({
     required: true,
   },
 
-  texPrice: {
+  taxPrice: {
     type: Number,
     required: true,
   },

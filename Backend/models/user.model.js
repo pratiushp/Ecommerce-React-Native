@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import validator from "validator";
-// import typeOf from './../node_modules/validator/es/lib/util/typeOf';
 
 const userSchema = new mongoose.Schema({
   name: {
