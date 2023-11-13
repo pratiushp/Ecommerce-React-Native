@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   colors,
   defaultImg,
@@ -12,7 +12,7 @@ import {
 import { Avatar, Button, TextInput } from "react-native-paper";
 import Footer from "../Components/Footer";
 
-const Register = ({ navigation }) => {
+const Register = ({ navigation, route }) => {
   const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,6 +28,10 @@ const Register = ({ navigation }) => {
     alert("Yeah"); // remove in futre
     navigation.navigate("verify");
   };
+
+  useEffect(() => {
+    if (route.params?.image) setAvatar(route.params.image);
+  }, [route.params]);
 
   const disableBtn =
     !name || !email || !password || city || !address || !pincode || !country;

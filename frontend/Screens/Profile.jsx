@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { colors, defaultStyle, formHeading } from "../Styles/style";
 import { Avatar, Button } from "react-native-paper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonBox from "../Components/ButtonBox";
 import Footer from "../Components/Footer";
 import Loader from "../Components/Loader";
@@ -13,7 +13,7 @@ const user = {
 
 const loading = false;
 
-const Profile = ({ navigation }) => {
+const Profile = ({ navigation, route }) => {
   const [avatar, setAvatar] = useState(null);
 
   const logoutHandler = () => {
@@ -51,6 +51,13 @@ const Profile = ({ navigation }) => {
         break;
     }
   };
+
+  useEffect(() => {
+    if (route.params?.image) {
+      setAvatar(route.params.image);
+      // Dispatch Update Pic
+    }
+  }, [route.params]);
   return (
     <>
       <View style={{ ...defaultStyle }}>

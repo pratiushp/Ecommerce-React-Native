@@ -21,6 +21,8 @@ import AdminOrders from "./Screens/Admin/AdminOrders";
 import UpdateProduct from "./Screens/Admin/UpdateProduct";
 import NewProduct from "./Screens/NewProduct";
 import ProductImages from "./Screens/Admin/ProductImages";
+import Camera from "./Screens/Camera";
+import CameraComponent from "./Screens/Camera";
 
 const Main = () => {
   const Stack = createNativeStackNavigator();
@@ -52,7 +54,7 @@ const Main = () => {
           <Stack.Screen name="adminorders" component={AdminOrders} />
           <Stack.Screen name="updateproduct" component={UpdateProduct} />
           <Stack.Screen name="newproduct" component={NewProduct} />
-
+          <Stack.Screen name="camera" component={CameraComponent} />
           <Stack.Screen name="productimages" component={ProductImages} />
         </Stack.Group>
       </Stack.Navigator>
