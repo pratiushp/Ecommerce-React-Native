@@ -8,7 +8,7 @@ export const processPayement = async (req, res) => {
     const { totalAmount } = req.body;
     const { client_secret } = await stripe.paymentIntents.create({
       amount: Number(totalAmount * 100),
-      currency: "inr",
+      currency: "npr",
     });
 
     return successMiddleware(

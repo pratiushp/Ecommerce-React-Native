@@ -431,6 +431,8 @@ export const getAdminProduct = async (req, res) => {
   try {
     const productFind = await product.find().populate("category");
 
+    const outOfStock = productFind.filter((i) => i.stock === 0);
+
     if (productFind.length === 0) {
       return res.status(400).json({ message: "No Category Found" });
     }
@@ -438,7 +440,12 @@ export const getAdminProduct = async (req, res) => {
       {
         success: true,
         message: "Product Retrieve Successfully",
-        data: productFind,
+        data: [
+          productFind,
+
+          (outOfStock = outOfStock.length),
+          (inStock = productFind.length - outOfStock.length),
+        ],
       },
       req,
       res
