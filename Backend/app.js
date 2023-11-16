@@ -5,7 +5,7 @@ import connectDB from "./data/database.js";
 import morgan from "morgan";
 import { AppError } from "./utils/error.js";
 import cookieParser from "cookie-parser";
-import Stripe from "stripe";
+import cors from "cors";
 
 config({ path: "./data/config.env" });
 export const app = express();
@@ -18,6 +18,13 @@ connectDB();
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser());
+app.use(
+  cors({
+    credentials: true,
+    methods: ["Get", "POST", "PUT", "DELETE"],
+    origin: [process.env.FRONTEND_URI_1, process.env.FRONTEND_URI_2],
+  })
+);
 
 //Middlewares
 app.use("/api", indexRoute);
