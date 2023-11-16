@@ -1,6 +1,34 @@
 import Order from "../models/order.js";
 import Product from "../models/product.js";
+import { stripe } from "../server.js";
 import { successMiddleware } from "../utils/successResponse.js";
+
+export const processPayement = async (req, res) => {
+  try {
+    const { totalAmount } = req.body;
+    const { client_secret } = await stripe.paymentIntents.create({
+      amount: Number(totalAmount * 100),
+      currency: "inr",
+    });
+
+    return successMiddleware(
+      {
+        success: true,
+        message: "Payment Success",
+        data: client_secret,
+      },
+      req,
+      res
+    );
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error,
+    });
+  }
+};
 
 export const createOrder = async (req, res) => {
   try {

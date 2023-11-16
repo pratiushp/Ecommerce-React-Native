@@ -1,5 +1,8 @@
 import { app } from "./app.js";
 import Cloudinary from "cloudinary";
+import Stripe from "stripe";
+
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 Cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_NAME,

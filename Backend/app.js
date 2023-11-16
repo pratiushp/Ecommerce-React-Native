@@ -5,6 +5,7 @@ import connectDB from "./data/database.js";
 import morgan from "morgan";
 import { AppError } from "./utils/error.js";
 import cookieParser from "cookie-parser";
+import Stripe from "stripe";
 
 config({ path: "./data/config.env" });
 export const app = express();
